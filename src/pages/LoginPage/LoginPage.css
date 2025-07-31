@@ -1,0 +1,225 @@
+/* Login Page Styles - Improved Width and Alignment */
+
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0F131C;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+    padding: 20px;
+    margin-top: 80px;
+}
+
+.login-card {
+    background-color: #1A1F2B;
+    border-radius: 15px;
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 100%;
+    border: 1px solid #2A2F3B;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.login-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #D5D5D6;
+    margin-bottom: 10px;
+}
+
+.login-subtitle {
+    font-size: 16px;
+    color: #A4A6AB;
+    line-height: 1.5;
+}
+
+.login-form {
+    width: 100%;
+}
+
+.login-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 40px;
+    width: 100%;
+}
+
+.login-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.login-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #A4A6AB;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.login-input {
+    background-color: #2A2F3B;
+    color: #D5D5D6;
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 1px solid #3A3F4B;
+    font-size: 16px;
+    min-height: 20px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.login-input:focus {
+    border-color: #4B7CFE;
+    background-color: #3A3F4B;
+    box-shadow: 0 0 0 2px rgba(75, 124, 254, 0.2);
+}
+
+.login-input:hover {
+    border-color: #4B7CFE;
+    background-color: #3A3F4B;
+}
+
+.login-input::placeholder {
+    color: #6B7280;
+}
+
+.login-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+    max-width: 100%;
+}
+
+.login-btn {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 200px;
+    height: 45px;
+    box-sizing: border-box;
+}
+
+.login-btn-primary {
+    background-color: #4B7CFE;
+    color: #C1D0FD;
+}
+
+.login-btn-primary:hover {
+    background-color: #3A6BE8;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 15px rgba(75, 124, 254, 0.3);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+}
+
+.link-container {
+    text-align: center;
+    margin-top: 20px;
+    color: #A4A6AB;
+    font-size: 14px;
+}
+
+.link-container a {
+    color: #4B7CFE;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 5px;
+    transition: color 0.3s ease;
+}
+
+.link-container a:hover {
+    color: #3A6BE8;
+    text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .login-container {
+        margin-top: 60px;
+        padding: 15px;
+    }
+    
+    .login-card {
+        max-width: 95%;
+        padding: 30px 25px;
+    }
+    
+    .login-actions {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .login-btn {
+        width: 100%;
+        max-width: 250px;
+        min-width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-container {
+        margin-top: 50px;
+        padding: 10px;
+    }
+    
+    .login-card {
+        padding: 25px 20px;
+        max-width: 100%;
+    }
+    
+    .login-title {
+        font-size: 28px;
+    }
+    
+    .login-btn {
+        min-width: 140px;
+        height: 40px;
+        padding: 10px 20px;
+    }
+    
+    .login-input {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+}
+
+/* Animation for card entrance */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-card {
+    animation: slideIn 0.6s ease-out;
+} 
