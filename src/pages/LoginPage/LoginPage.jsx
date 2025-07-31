@@ -10,6 +10,7 @@ function LoginPage() {
     credentials: '',
     password: ''
   });
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -37,7 +38,7 @@ function LoginPage() {
     }
     
     try {
-      const res = await axios.post('http://localhost:3000/auth/login', formData);
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, formData);
       localStorage.setItem("token", res.data.Token);
       
       ToastHelper.success(res.data.message);
@@ -75,16 +76,25 @@ function LoginPage() {
             
             <div className="login-field">
               <label className="login-label">Password *</label>
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                className="login-input"
-                autoComplete="off"
-                value={formData.password || ''}
-                onChange={handleChange}
-                required
-              />
+              <div className="password-input-container">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  placeholder="Password"
+                  className="login-input"
+                  autoComplete="off"
+                  value={formData.password || ''}
+                  onChange={handleChange}
+                  required
+                />
+                <button
+                  type="button"
+                  className="password-toggle-btn"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? "👁️" : "👁️‍🗨️"}
+                </button>
+              </div>
             </div>
           </div>
           

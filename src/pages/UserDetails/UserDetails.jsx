@@ -29,7 +29,7 @@ function UserDetails() {
         const fetchUserDetails = async () => {
             try {
 
-                const res = await axios.get(`http://localhost:3000/user/${user_id}`, {
+                const res = await axios.get(`${process.env.REACT_APP_API_URL}/user/${user_id}`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },

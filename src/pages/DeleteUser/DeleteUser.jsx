@@ -36,7 +36,7 @@ function DeleteUser() {
         try {
             console.log(token)
 
-            const res = await axios.delete(`http://localhost:3000/user/delete/${user_id}`, {
+            const res = await axios.delete(`${process.env.REACT_APP_API_URL}/user/delete/${user_id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

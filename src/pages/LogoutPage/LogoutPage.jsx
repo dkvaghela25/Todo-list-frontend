@@ -34,7 +34,7 @@ function LogoutPage() {
 
             console.log(token)
 
-            const res = await axios.post(`http://localhost:3000/auth/logout`, {} , {
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/logout`, {} , {
                 headers: {
                     authorization: `Bearer ${token}`,
                 }

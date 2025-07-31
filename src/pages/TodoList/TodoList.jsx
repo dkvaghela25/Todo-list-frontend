@@ -38,7 +38,7 @@ function TodoList() {
     useEffect(() => {
         const fetchTasks = async () => {
             try {
-                const fetchedData = await axios.get('http://localhost:3000/todo', {
+                const fetchedData = await axios.get(`${process.env.REACT_APP_API_URL}/todo`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
@@ -72,7 +72,7 @@ function TodoList() {
         }
         
         try {
-            const res = await axios.post('http://localhost:3000/todo/create', formData, {
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/todo/create`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -124,7 +124,7 @@ function TodoList() {
         }
 
         try {
-            const res = await axios.patch(`http://localhost:3000/todo/update/${todoId}`, formData, {
+            const res = await axios.patch(`${process.env.REACT_APP_API_URL}/todo/update/${todoId}`, formData, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -150,7 +150,7 @@ function TodoList() {
             const todo_id = e.currentTarget.getAttribute('data-todo-id');
             console.log(todo_id);
 
-            const res = await axios.delete(`http://localhost:3000/todo/delete/${todo_id}`, {
+            const res = await axios.delete(`${process.env.REACT_APP_API_URL}/todo/delete/${todo_id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

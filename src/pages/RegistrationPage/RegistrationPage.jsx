@@ -10,6 +10,8 @@ function RegistrationPage() {
   const [formData, setFormData] = useState({});
   const [file, setFile] = useState(null);
   const [backgroundImage, setBackgroundImage] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -76,7 +78,7 @@ function RegistrationPage() {
     console.log('Form data being sent:', formDataWithFile);
 
     try {
-      const res = await axios.post('http://localhost:3000/auth/register', formDataWithFile, {
+      const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/register`, formDataWithFile, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -141,30 +143,48 @@ function RegistrationPage() {
 
               <div className="registration-field">
                 <label className="registration-label">Password *</label>
-                <input
-                  className="registration-input"
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  autoComplete="off"
-                  value={formData.password || ''}
-                  onChange={handleChange}
-                  required
-                />
+                <div className="password-input-container">
+                  <input
+                    className="registration-input"
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    placeholder="Password"
+                    autoComplete="off"
+                    value={formData.password || ''}
+                    onChange={handleChange}
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="password-toggle-btn"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? "👁️" : "👁️‍🗨️"}
+                  </button>
+                </div>
               </div>
 
               <div className="registration-field">
                 <label className="registration-label">Confirm Password *</label>
-                <input
-                  className="registration-input"
-                  type="password"
-                  name="confirmPassword"
-                  placeholder="Confirm Password"
-                  autoComplete="off"
-                  value={formData.confirmPassword || ''}
-                  onChange={handleChange}
-                  required
-                />
+                <div className="password-input-container">
+                  <input
+                    className="registration-input"
+                    type={showConfirmPassword ? "text" : "password"}
+                    name="confirmPassword"
+                    placeholder="Confirm Password"
+                    autoComplete="off"
+                    value={formData.confirmPassword || ''}
+                    onChange={handleChange}
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="password-toggle-btn"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  >
+                    {showConfirmPassword ? "👁️" : "👁️‍🗨️"}
+                  </button>
+                </div>
               </div>
 
               <div className="registration-field">
