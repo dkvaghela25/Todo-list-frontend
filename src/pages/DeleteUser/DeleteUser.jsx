@@ -43,6 +43,7 @@ function DeleteUser() {
             });
 
             ToastHelper.success(res.data.message);
+            localStorage.removeItem("token");
             navigate('/login')
         } catch (error) {
             if (error.response) {

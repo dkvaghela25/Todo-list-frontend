@@ -182,7 +182,7 @@ function RegistrationPage() {
               </div>
 
               <div className="registration-field">
-                <label className="registration-label">Phone Number (Optional)</label>
+                <label className="registration-label">Phone Number *</label>
                 <input
                   className="registration-input"
                   type="text"

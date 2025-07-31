@@ -14,11 +14,25 @@
 .user-details-card {
     background-color: #1A1F2B;
     border-radius: 15px;
-    padding: 40px;
+    padding: 20px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    max-width: 900px; /* Reduced from 1000px for better proportions */
-    width: 100%;
+    max-width: 900px;
+    width: 95%;
     border: 1px solid #2A2F3B;
+}
+
+@media (min-width: 480px) {
+    .user-details-card {
+        padding: 30px;
+        width: 90%;
+    }
+}
+
+@media (min-width: 768px) {
+    .user-details-card {
+        padding: 40px;
+        width: 80%;
+    }
 }
 
 .user-details-header {
@@ -41,10 +55,19 @@
 
 .user-details-content {
     display: flex;
-    gap: 40px; /* Reduced gap */
-    align-items: flex-start;
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
     margin-bottom: 40px;
-    max-width: 100%; /* Ensure content doesn't overflow */
+    max-width: 100%;
+}
+
+@media (min-width: 768px) {
+    .user-details-content {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-around;
+    }
 }
 
 .user-details-left {
@@ -134,7 +157,7 @@
     display: flex;
     gap: 15px; /* Reduced gap */
     justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     margin-bottom: 30px;
     max-width: 100%; /* Ensure buttons don't overflow */
 }
@@ -199,7 +222,6 @@
 /* Responsive design */
 @media (max-width: 768px) {
     .user-details-container {
-        margin-top: 60px;
         padding: 15px;
     }
     
@@ -225,7 +247,7 @@
     
     .user-details-right {
         max-width: 100%;
-        min-width: auto;
+        min-width: 100%;
     }
     
     .user-details-actions {
@@ -243,7 +265,6 @@
 
 @media (max-width: 480px) {
     .user-details-container {
-        margin-top: 50px;
         padding: 10px;
     }
     
