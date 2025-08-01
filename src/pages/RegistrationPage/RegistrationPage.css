@@ -240,10 +240,19 @@
     color: #C1D0FD;
 }
 
-.registration-btn-primary:hover {
+.registration-btn-primary:hover:not(:disabled) {
     background-color: #3A6BE8;
     transform: translateY(-1px);
     box-shadow: 0 4px 15px rgba(75, 124, 254, 0.3);
+}
+
+.registration-btn-primary:disabled {
+    background-color: #2A3548;
+    color: #656871;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    opacity: 0.8;
 }
 
 .registration-btn-secondary {
@@ -251,10 +260,19 @@
     color: #C1D0FD;
 }
 
-.registration-btn-secondary:hover {
+.registration-btn-secondary:hover:not(:disabled) {
     background-color: #5A6268;
     transform: translateY(-1px);
     box-shadow: 0 4px 15px rgba(107, 114, 128, 0.3);
+}
+
+.registration-btn-secondary:disabled {
+    background-color: #2A3548;
+    color: #656871;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    opacity: 0.8;
 }
 
 .registration-btn:active {

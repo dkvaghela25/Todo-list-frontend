@@ -11,6 +11,7 @@ function LoginPage() {
     password: ''
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
 
   const navigate = useNavigate();
 
@@ -36,6 +37,8 @@ function LoginPage() {
     if (!formData.credentials || !formData.password) {
       return ToastHelper.error('Please fill in all required fields');
     }
+
+    setIsLoggingIn(true);
     
     try {
       const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, formData);
@@ -47,6 +50,8 @@ function LoginPage() {
     } catch (error) {
       console.error("Login error:", error);
       ToastHelper.error(error.response?.data?.message || 'Login failed');
+    } finally {
+      setIsLoggingIn(false);
     }
   };
 
@@ -102,8 +107,9 @@ function LoginPage() {
             <button 
               type="submit" 
               className="login-btn login-btn-primary"
+              disabled={isLoggingIn}
             >
-              Login
+              {isLoggingIn ? 'Logging in...' : 'Login'}
             </button>
           </div>
         </form>

@@ -1,4 +1,4 @@
-import React , { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { jwtDecode } from "jwt-decode";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -8,24 +8,21 @@ import isLoggedin from '../../helper/isLoggedin';
 import './DeleteUser.css'
 
 function DeleteUser() {
-
+    const [isDeleting, setIsDeleting] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
-
         let bool = isLoggedin();
-
         console.log(bool)
-
         if (!bool) {
             navigate('/login');
             return;
         }
-
     }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsDeleting(true);
 
 
         let token = localStorage.getItem('token');
@@ -65,10 +62,18 @@ function DeleteUser() {
                 <h1 className="delete-title">Are you sure you want to delete your account?</h1>
                 <p className="delete-subtitle">This action cannot be undone. All your data will be permanently removed.</p>
                 <div className="delete-buttons">
-                    <button className="delete-btn delete-btn-yes" onClick={handleSubmit}>
-                        Yes
+                    <button 
+                        className="delete-btn delete-btn-yes" 
+                        onClick={handleSubmit}
+                        disabled={isDeleting}
+                    >
+                        {isDeleting ? 'Deleting...' : 'Yes'}
                     </button>
-                    <button className="delete-btn delete-btn-no" onClick={() => navigate('/user-details')}>
+                    <button 
+                        className="delete-btn delete-btn-no" 
+                        onClick={() => navigate('/user-details')}
+                        disabled={isDeleting}
+                    >
                         Cancel
                     </button>
                 </div>

@@ -5,8 +5,8 @@
     align-items: center;
     background-color: #0F131C;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
     padding: 20px;
     margin-top: 80px;
 }
@@ -191,10 +191,19 @@
     color: #C1D0FD;
 }
 
-.update-user-btn-primary:hover {
+.update-user-btn-primary:hover:not(:disabled) {
     background-color: #3A6BE8;
     transform: translateY(-1px);
     box-shadow: 0 4px 15px rgba(75, 124, 254, 0.3);
+}
+
+.update-user-btn-primary:disabled {
+    background-color: #2A3548;
+    color: #656871;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    opacity: 0.8;
 }
 
 .update-user-btn-secondary {
@@ -202,10 +211,19 @@
     color: #C1D0FD;
 }
 
-.update-user-btn-secondary:hover {
+.update-user-btn-secondary:hover:not(:disabled) {
     background-color: #5A6268;
     transform: translateY(-1px);
     box-shadow: 0 4px 15px rgba(107, 114, 128, 0.3);
+}
+
+.update-user-btn-secondary:disabled {
+    background-color: #2A3548;
+    color: #656871;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    opacity: 0.8;
 }
 
 .update-user-btn:active {

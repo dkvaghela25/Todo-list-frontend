@@ -166,10 +166,26 @@
     color: #C1D0FD;
 }
 
+.login-card .login-btn-primary{
+    background-color: #4B7CFE;
+    &:hover {
+    background-color: #3A6BE8;
+    }
+}
+
 .login-btn-primary:hover {
     background-color: #3A6BE8;
     transform: translateY(-1px);
     box-shadow: 0 4px 15px rgba(75, 124, 254, 0.3);
+}
+
+.login-btn-primary:disabled {
+    background-color: #2A3548;
+    color: #656871;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    opacity: 0.8;
 }
 
 .login-btn:active {

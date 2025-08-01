@@ -78,9 +78,15 @@
     color: #C1D0FD;
 }
 
-.delete-btn-yes:hover {
+.delete-btn-yes:hover:not(:disabled) {
     background-color: #c82333;
     transform: translateY(-1px);
+}
+
+.delete-btn-yes:disabled {
+    background-color: #8b2a35;
+    cursor: not-allowed;
+    transform: none;
 }
 
 .delete-btn-no {
@@ -89,7 +95,15 @@
     border: 1px solid #4B7CFE;
 }
 
-.delete-btn-no:hover {
+.delete-btn-no:disabled {
+    background-color: #1A1F2B;
+    color: #656871;
+    cursor: not-allowed;
+    transform: none;
+    border-color: #3A3F4B;
+}
+
+.delete-btn-no:hover:not(:disabled) {
     background-color: #3A3F4B;
     transform: translateY(-1px);
 }

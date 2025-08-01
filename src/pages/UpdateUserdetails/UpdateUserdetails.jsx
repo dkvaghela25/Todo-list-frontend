@@ -12,6 +12,7 @@ function UpdateUserdetails() {
   const [originalData, setOriginalData] = useState({});
   const [file, setFile] = useState(null);
   const [backgroundImage, setBackgroundImage] = useState(null);
+  const [isUpdating, setIsUpdating] = useState(false);
 
   const navigate = useNavigate();
 
@@ -77,6 +78,8 @@ function UpdateUserdetails() {
   const updateUser = async (e) => {
     e.preventDefault();
 
+    setIsUpdating(true);
+
     let token = localStorage.getItem('token');
     const decodedToken = jwtDecode(token);
     let user_id = decodedToken.user_id;
@@ -116,6 +119,8 @@ function UpdateUserdetails() {
       navigate('/user-details');
     } catch (error) {
       ToastHelper.error(error.response?.data?.message || 'Update failed');
+    } finally {
+      setIsUpdating(false);
     }
   };
 
@@ -199,8 +204,9 @@ function UpdateUserdetails() {
             <button 
               type="submit" 
               className="update-user-btn update-user-btn-primary"
+              disabled={isUpdating}
             >
-              Update Profile
+              {isUpdating ? 'Updating...' : 'Update Profile'}
             </button>
             <button 
               type="button" 

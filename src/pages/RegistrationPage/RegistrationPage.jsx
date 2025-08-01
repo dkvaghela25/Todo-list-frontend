@@ -12,6 +12,7 @@ function RegistrationPage() {
   const [backgroundImage, setBackgroundImage] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(false);
 
   const navigate = useNavigate();
 
@@ -64,6 +65,8 @@ function RegistrationPage() {
     if (formData.password.length < 6) {
       return ToastHelper.error('Password must be at least 6 characters long');
     }
+
+    setIsRegistering(true);
     
     const formDataWithFile = new FormData();
     formDataWithFile.append('username', formData.username);
@@ -88,6 +91,8 @@ function RegistrationPage() {
     } catch (error) {
       console.error("Registration error:", error);
       ToastHelper.error(error.response?.data?.message || 'Registration failed'); // Use the helper
+    } finally {
+      setIsRegistering(false);
     }
   };
 
@@ -137,7 +142,6 @@ function RegistrationPage() {
                   autoComplete="off"
                   value={formData.username || ''}
                   onChange={handleChange}
-                  required
                 />
               </div>
 
@@ -152,7 +156,6 @@ function RegistrationPage() {
                     autoComplete="off"
                     value={formData.password || ''}
                     onChange={handleChange}
-                    required
                   />
                   <button
                     type="button"
@@ -175,7 +178,6 @@ function RegistrationPage() {
                     autoComplete="off"
                     value={formData.confirmPassword || ''}
                     onChange={handleChange}
-                    required
                   />
                   <button
                     type="button"
@@ -197,7 +199,6 @@ function RegistrationPage() {
                   autoComplete="off"
                   value={formData.email || ''}
                   onChange={handleChange}
-                  required
                 />
               </div>
 
@@ -220,8 +221,9 @@ function RegistrationPage() {
             <button 
               type="submit" 
               className="registration-btn registration-btn-primary"
+              disabled={isRegistering}
             >
-              Register
+              {isRegistering ? 'Registering...' : 'Register'}
             </button>
           </div>
         </form>

@@ -1,4 +1,4 @@
-import React , {useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from "jwt-decode";
@@ -8,24 +8,21 @@ import isLoggedin from '../../helper/isLoggedin';
 
 
 function LogoutPage() {
-
+    const [isLoggingOut, setIsLoggingOut] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
-
         let bool = isLoggedin();
-
         console.log(bool)
-
         if (!bool) {
             navigate('/login');
             return;
         }
-
     }, []);
     
     const logout = async (e) => {
         e.preventDefault();
+        setIsLoggingOut(true);
 
         let token = localStorage.getItem('token');
         const decodedToken = jwtDecode(token);
@@ -61,10 +58,18 @@ function LogoutPage() {
                 <h1 className="logout-title">Are you sure you want to log out?</h1>
                 <p className="logout-subtitle">You'll need to sign in again to access your account.</p>
                 <div className="logout-buttons">
-                    <button className="logout-btn logout-btn-yes" onClick={logout}>
-                        Yes
+                    <button 
+                        className="logout-btn logout-btn-yes" 
+                        onClick={logout}
+                        disabled={isLoggingOut}
+                    >
+                        {isLoggingOut ? 'Logging out...' : 'Yes'}
                     </button>
-                    <button className="logout-btn logout-btn-no" onClick={() => navigate('/user-details')}>
+                    <button 
+                        className="logout-btn logout-btn-no" 
+                        onClick={() => navigate('/user-details')}
+                        disabled={isLoggingOut}
+                    >
                         Cancel
                     </button>
                 </div>

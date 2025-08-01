@@ -17,6 +17,8 @@ function TodoList() {
 
     const [tasks, setTasks] = useState([]);
     const [todoId, setTodoId] = useState(null);
+    const [isAdding, setIsAdding] = useState(false);
+    const [isUpdating, setIsUpdating] = useState(false);
 
     const navigate = useNavigate();
 
@@ -71,6 +73,8 @@ function TodoList() {
             return ToastHelper.error('Please fill in all required fields');
         }
         
+        setIsAdding(true);
+        
         try {
             const res = await axios.post(`${process.env.REACT_APP_API_URL}/todo/create`, formData, {
                 headers: {
@@ -87,6 +91,8 @@ function TodoList() {
         } catch (error) {
             console.error("Add task error:", error);
             ToastHelper.error(error.response?.data?.message || 'Failed to add task');
+        } finally {
+            setIsAdding(false);
         }
     };
 
@@ -123,6 +129,8 @@ function TodoList() {
             return ToastHelper.error('Please fill in all required fields');
         }
 
+        setIsUpdating(true);
+
         try {
             const res = await axios.patch(`${process.env.REACT_APP_API_URL}/todo/update/${todoId}`, formData, {
                 headers: {
@@ -142,6 +150,8 @@ function TodoList() {
         } catch (error) {
             console.error("Update task error:", error);
             ToastHelper.error(error.response?.data?.message || 'Failed to update task');
+        } finally {
+            setIsUpdating(false);
         }
     };
 
@@ -211,16 +221,18 @@ function TodoList() {
                         <button 
                             type="submit" 
                             className="todo-btn todo-btn-primary add-button"
+                            disabled={isAdding}
                         >
-                            Add Task
+                            {isAdding ? 'Adding...' : 'Add Task'}
                         </button>
                         <button 
                             type="button" 
                             className="todo-btn todo-btn-secondary update-button"
                             onClick={updateTask}
+                            disabled={isUpdating}
                             hidden
                         >
-                            Update Task
+                            {isUpdating ? 'Updating...' : 'Update Task'}
                         </button>
                     </div>
                 </form>

@@ -80,9 +80,16 @@
     color: #C1D0FD;
 }
 
-.logout-btn-yes:hover {
+.logout-btn-yes:hover:not(:disabled) {
     background-color: #3A6BE8;
     transform: translateY(-1px);
+}
+
+.logout-btn-yes:disabled {
+    background-color: #2A3548;
+    color: #656871;
+    cursor: not-allowed;
+    transform: none;
 }
 
 .logout-btn-no {
@@ -91,7 +98,15 @@
     border: 1px solid #4B7CFE;
 }
 
-.logout-btn-no:hover {
+.logout-btn-no:disabled {
+    background-color: #1A1F2B;
+    color: #656871;
+    cursor: not-allowed;
+    transform: none;
+    border-color: #3A3F4B;
+}
+
+.logout-btn-no:hover:not(:disabled) {
     background-color: #3A3F4B;
     transform: translateY(-1px);
 }
