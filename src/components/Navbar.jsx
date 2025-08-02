@@ -8,18 +8,10 @@ function Navbar() {
     const navigate = useNavigate();
     const loggedIn = isLoggedin();
 
-    const handleLogoClick = () => {
-        if (loggedIn) {
-            navigate('/user-details');
-        } else {
-            navigate('/');
-        }
-    };
-
     return (
         <div>
             <header>
-                <span style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem' }} onClick={handleLogoClick}>
+                <span style={{ cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '0.5rem' }} onClick={() => navigate('/')}>
                     <BsListTask size={28} style={{ color: '#C1D0FD' }} />
                     <span style={{ fontWeight: 'bold', fontSize: '1.2rem', color: '#C1D0FD' }}>TodoMaster</span>
                 </span>
